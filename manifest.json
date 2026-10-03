@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "天气快报 Weather Quick",
+  "version": "1.0.0",
+  "description": "一键查看当前城市天气，支持未来3天预报。数据来源 wttr.in。",
+  "permissions": ["storage", "geolocation"],
+  "host_permissions": ["https://wttr.in/*", "https://api.open-meteo.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "天气快报"
+  }
+}

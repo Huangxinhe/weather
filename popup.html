@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <div class="search-bar">
+      <input type="text" id="cityInput" placeholder="输入城市名（如 Beijing）">
+      <button id="searchBtn" class="primary">查询</button>
+    </div>
+
+    <div class="location-row">
+      <button id="useLocation" class="ghost small">📍 使用我的位置</button>
+      <button id="themeToggle" class="ghost small">🌙 深色</button>
+    </div>
+
+    <div id="loading" class="hidden">加载中...</div>
+    <div id="error" class="hidden"></div>
+
+    <div id="current" class="card hidden">
+      <div class="city" id="cityName">—</div>
+      <div class="main">
+        <div class="temp" id="temp">—</div>
+        <div class="condition" id="condition">—</div>
+      </div>
+      <div class="details">
+        <span>💨 <span id="wind">—</span></span>
+        <span>💧 <span id="humidity">—</span></span>
+        <span>🌡️ 体感 <span id="feelsLike">—</span></span>
+      </div>
+    </div>
+
+    <div id="hourlySection" class="hidden">
+      <div class="section-title">⏰ 逐小时预报</div>
+      <div class="hourly-scroll" id="hourly"></div>
+    </div>
+
+    <div class="forecast" id="forecast"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* 主题变量：默认浅色 */
+:root {
+  --bg-start: #667eea;
+  --bg-end: #764ba2;
+  --text: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.15);
+  --item-bg: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-text: #333333;
+  --btn-bg: #ffffff;
+  --btn-text: #667eea;
+  --error-bg: rgba(255, 0, 0, 0.15);
+  --error-text: #ffcccc;
+  --scrollbar: rgba(255, 255, 255, 0.3);
+}
+
+/* 深色主题 */
+body[data-theme="dark"] {
+  --bg-start: #0f2027;
+  --bg-end: #2c5364;
+  --text: #e2e8f0;
+  --text-dim: rgba(226, 232, 240, 0.75);
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --item-bg: rgba(255, 255, 255, 0.06);
+  --input-bg: rgba(255, 255, 255, 0.12);
+  --input-text: #e2e8f0;
+  --btn-bg: #38bdf8;
+  --btn-text: #0f2027;
+  --error-bg: rgba(255, 80, 80, 0.2);
+  --error-text: #ffb3b3;
+  --scrollbar: rgba(255, 255, 255, 0.2);
+}
+
+body {
+  width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", sans-serif;
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  color: var(--text);
+  transition: background 0.3s ease;
+}
+
+.app { padding: 16px; }
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+#cityInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 14px;
+  outline: none;
+}
+
+#cityInput::placeholder { color: var(--input-text); opacity: 0.5; }
+
+#cityInput:focus { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); }
+
+button { cursor: pointer; border: none; transition: transform 0.15s, opacity 0.15s; }
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0); }
+
+button.primary {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+button.ghost { background: transparent; color: var(--text-dim); }
+button.ghost.small { font-size: 12px; padding: 4px 8px; }
+
+.location-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#loading, #error {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+#error {
+  color: var(--error-text);
+  background: var(--error-bg);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.hidden { display: none !important; }
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.city { font-size: 16px; opacity: 0.9; margin-bottom: 8px; }
+.temp { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.condition { font-size: 14px; opacity: 0.9; margin-bottom: 12px; }
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  font-size: 12px;
+  opacity: 0.85;
+  color: var(--text-dim);
+}
+
+.forecast { display: flex; flex-direction: column; gap: 6px; }
+
+/* 分节标题 */
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+
+/* 逐小时预报 - 横向滚动 */
+.hourly-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+
+.hourly-scroll::-webkit-scrollbar { height: 4px; }
+.hourly-scroll::-webkit-scrollbar-track { background: transparent; }
+.hourly-scroll::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 2px;
+}
+
+.hourly-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+  padding: 10px 4px;
+  background: var(--item-bg);
+  border-radius: 10px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.hourly-time { font-size: 11px; opacity: 0.8; margin-bottom: 4px; }
+.hourly-icon { width: 24px; height: 24px; margin-bottom: 4px; }
+.hourly-temp { font-weight: 600; font-size: 13px; }
+
+/* 天气图标 */
+.weather-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.forecast-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.forecast-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--item-bg);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.forecast-day { flex: 1; font-weight: 600; }
+.forecast-cond {
+  flex: 1;
+  text-align: center;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.forecast-temp { flex: 1; text-align: right; font-weight: 600; }
